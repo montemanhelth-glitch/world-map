@@ -2,7 +2,7 @@
   "Лес Крея": {
     "x": 50,
     "y": 30,
-    "icon": "icons/krey.png",
-    "article": "articles/Krey.html"
+    "icon": "icons/Krey.png",
+    "article": "articles/krey.html"
   }
 }
