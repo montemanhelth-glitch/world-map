@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Карта мира</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0d0d1a; font-family: -apple-system, sans-serif; overflow: hidden; }
+    #map-wrap { position: relative; width: 100vw; height: 100vh; overflow: auto; }
+    #map-img { display: block; width: 100%; height: auto; min-height: 100vh; object-fit: contain; }
+    .city-icon {
+      position: absolute; width: 48px; height: 48px;
+      transform: translate(-50%, -50%); cursor: pointer;
+      filter: drop-shadow(0 0 6px rgba(0,0,0,0.9));
+      transition: transform 0.15s;
+    }
+    .city-icon:active { transform: translate(-50%, -50%) scale(1.25); }
+    .city-label {
+      position: absolute; transform: translate(-50%, -160%);
+      color: #fff; font-size: 13px; font-weight: bold;
+      text-shadow: 0 0 4px #000, 0 0 4px #000, 0 0 4px #000;
+      pointer-events: none; white-space: nowrap;
+    }
+    #hint {
+      position: fixed; left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0,0,0,0.85); color: #fff;
+      padding: 20px 30px; border-radius: 12px;
+      text-align: center; font-size: 15px; line-height: 1.5;
+      max-width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div id="map-wrap">
+    <img id="map-img" src="map.jpg" alt="Карта">
+  </div>
+
+  <script>
+    const tg = window.Telegram?.WebApp;
+    if (tg) { tg.ready(); tg.expand(); }
+
+    const wrap = document.getElementById('map-wrap');
+
+    fetch('cities.json')
+      .then(r => r.json())
+      .then(data => {
+        const cities = Object.entries(data);
+        if (cities.length === 0) { showHint(); return; }
+        cities.forEach(([name, info]) => renderCity(name, info));
+      })
+      .catch(() => {});
+
+    function renderCity(name, info) {
+      const icon = document.createElement('img');
+      icon.className = 'city-icon';
+      icon.src = info.icon;
+      icon.style.left = info.x + '%';
+      icon.style.top = info.y + '%';
+      icon.onclick = () => { window.location.href = info.article; };
+      icon.onerror = () => { icon.style.display = 'none'; };
+      wrap.appendChild(icon);
+
+      const label = document.createElement('div');
+      label.className = 'city-label';
+      label.style.left = info.x + '%';
+      label.style.top = info.y + '%';
+      label.textContent = name;
+      wrap.appendChild(label);
+    }
+
+    function showHint() {
+      const h = document.createElement('div');
+      h.id = 'hint';
+      h.innerHTML = '🗺 Карта пока пустая.<br>Добавь первый город в cities.json.';
+      document.body.appendChild(h);
+    }
+  </script>
+</body>
+</html>
