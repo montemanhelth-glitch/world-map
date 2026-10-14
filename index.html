@@ -63,12 +63,19 @@ position: relative;
     height: 72px;
   }
   .city-label {
+    position: absolute;
+  transform: translate(-50%, 130%);
+  color: #fff;
     font-size: 16px;
+    font-weight: bold;
+    text-shadow: 0 0 4px #000, 0 0 4px #000, 0 0 4px #000;
+  pointer-events: none;
+  white-space: nowrap;
   }
 }
     #hint {
       position: fixed; left: 50%; top: 50%;
-      transform: translate(-50%, 150%);
+      transform: translate(-50%, -50%);
       background: rgba(0,0,0,0.85); color: #fff;
       padding: 20px 30px; border-radius: 12px;
       text-align: center; font-size: 15px; line-height: 1.5;
