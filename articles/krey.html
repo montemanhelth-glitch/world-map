@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Krey</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0d0d1a; color: #eee;
+      font-family: -apple-system, sans-serif;
+      line-height: 1.6; padding-bottom: 40px;
+    }
+    #back {
+      position: fixed; left: 12px; top: 12px;
+      background: rgba(0,0,0,0.7); border: none;
+      color: #fff; padding: 10px 16px;
+      border-radius: 20px; font-size: 14px;
+      cursor: pointer; z-index: 10;
+    }
+    #content { padding: 20px; margin-top: 50px; }
+    h1 { font-size: 26px; margin-bottom: 8px; }
+    .subtitle { color: #ffd700; margin-bottom: 20px; font-size: 14px; }
+    h2 {
+      font-size: 18px; margin: 24px 0 10px;
+      color: #ffd700; border-bottom: 1px solid #333;
+      padding-bottom: 6px;
+    }
+    p { margin-bottom: 12px; color: #ccc; }
+    ul { margin: 0 0 12px 20px; color: #ccc; }
+    li { margin-bottom: 6px; }
+    .info-box {
+      background: #1e1e2e; border-left: 3px solid #ffd700;
+      padding: 12px 16px; margin: 16px 0;
+      border-radius: 6px;
+    }
+    .info-box p { margin-bottom: 6px; }
+    .info-box b { color: #ffd700; }
+  </style>
+</head>
+<body>
+  <button id="back" onclick="window.location.href='../index.html'">⬅ К карте</button>
+
+  <div id="content">
+    <h1>🏰 Krey</h1>
+    <p class="subtitle">Краткое описание города</p>
+
+    <div class="info-box">
+      <p><b>Население:</b> укажи число</p>
+      <p><b>Правитель:</b> укажи имя</p>
+      <p><b>Основан:</b> укажи год</p>
+    </div>
+
+    <h2>Описание</h2>
+    <p>Здесь напиши общее описание города Krey — как он выглядит, чем известен, 
+    что в нём особенного.</p>
+
+    <h2>История</h2>
+    <p>Здесь напиши историю города — когда основан, какие события происходили, 
+    кто правил раньше.</p>
+
+    <h2>Достопримечательности</h2>
+    <ul>
+      <li>Первое место</li>
+      <li>Второе место</li>
+      <li>Третье место</li>
+    </ul>
+  </div>
+
+  <script>
+    const tg = window.Telegram?.WebApp;
+    if (tg) { tg.ready(); tg.expand(); }
+  </script>
+</body>
+</html>
