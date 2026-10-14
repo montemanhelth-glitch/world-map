@@ -33,10 +33,25 @@ position: relative;
   line-height: 0;
     }
     .city-icon {
-      position: absolute; width: 45px; height: 45px;
-      transform: translate(-50%, -50%); cursor: pointer;
-      filter: drop-shadow(0 0 6px rgba(0,0,0,0.9));
-      transition: transform 0.15s;
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  filter: drop-shadow(0 0 6px rgba(0,0,0,0.9));
+  transition: transform 0.15s;
+}
+
+/* для экранов шире 900px (ПК и ноутбуки) */
+@media (min-width: 900px) {
+  .city-icon {
+    width: 72px;
+    height: 72px;
+  }
+  .city-label {
+    font-size: 16px;
+  }
+}
     }
     .city-icon:active { transform: translate(-50%, -50%) scale(1.25); }
     .city-label {
