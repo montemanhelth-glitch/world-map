@@ -8,10 +8,19 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: #0d0d1a; font-family: -apple-system, sans-serif; overflow: hidden; }
-    #map-wrap { position: relative; width: 100vw; height: 100vh; overflow: auto; }
-    #map-img { display: block; width: 100%; height: auto; min-height: 100vh; object-fit: contain; }
+    #map-wrap {
+  position: relative; width: 100vw; height: 100vh;
+  overflow: auto;
+  display: flex; align-items: center; justify-content: center;
+}
+    #map-img {
+  display: block;
+  width: 90%;      /* ← вот это число меняй: 30, 50, 70 */
+  height: auto;
+  object-fit: contain;
+}
     .city-icon {
-      position: absolute; width: 80px; height: 80px;
+      position: absolute; width: 100px; height: 100px;
       transform: translate(-50%, -50%); cursor: pointer;
       filter: drop-shadow(0 0 6px rgba(0,0,0,0.9));
       transition: transform 0.15s;
