@@ -37,13 +37,22 @@
     }
     .info-box p { margin-bottom: 6px; }
     .info-box b { color: #ffd700; }
-    .small-img {
-  width: 50%;              /* 50% ширины статьи */
-  max-width: 90%;        /* но не больше 300 пикселей */
-  display: block;          /* на отдельной строке */
-  margin: 16px auto;       /* по центру, с отступами сверху/снизу */
-  border-radius: 10px;     /* скруглённые углы */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);  /* лёгкая тень */
+/* ===== ТЕЛЕФОН (по умолчанию) ===== */
+.small-img {
+  width: 90%;              /* на телефоне — почти вся ширина */
+  max-width: 400px;
+  display: block;
+  margin: 16px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+/* ===== ПК и ноутбуки ===== */
+@media (min-width: 900px) {
+  .small-img {
+    width: 50%;            /* на ПК — половина ширины статьи */
+    max-width: 400px;
+  }
 }
   </style>
 </head>
