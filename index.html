@@ -25,7 +25,7 @@ position: relative;
   height: auto;
   object-fit: contain;
 }
-    #map-box {
+#map-box {
   position: relative;
   max-width: 100%;
   max-height: 100vh;
@@ -78,15 +78,17 @@ position: relative;
   </style>
 </head>
 <body>
-  <div id="map-wrap">
+<div id="map-wrap">
+  <div id="map-box">
     <img id="map-img" src="map.jpg" alt="Карта">
   </div>
+</div>
 
   <script>
     const tg = window.Telegram?.WebApp;
     if (tg) { tg.ready(); tg.expand(); }
 
-    const wrap = document.getElementById('map-wrap');
+    const wrap = document.getElementById('map-box');
 
     fetch('cities.json')
       .then(r => r.json())
