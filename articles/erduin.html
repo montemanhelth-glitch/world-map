@@ -1,1 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лес Крея</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0d0d1a; color: #eee;
+      font-family: -apple-system, sans-serif;
+      line-height: 1.6; padding-bottom: 40px;
+    }
+    #back {
+      position: fixed; left: 12px; top: 12px;
+      background: rgba(0,0,0,0.7); border: none;
+      color: #fff; padding: 10px 16px;
+      border-radius: 20px; font-size: 14px;
+      cursor: pointer; z-index: 10;
+    }
+    #content { padding: 20px; margin-top: 50px; }
+    h1 { font-size: 26px; margin-bottom: 8px; }
+    .subtitle { color: #ffd700; margin-bottom: 20px; font-size: 14px; }
+    h2 {
+      font-size: 18px; margin: 24px 0 10px;
+      color: #ffd700; border-bottom: 1px solid #333;
+      padding-bottom: 6px;
+    }
+    p { margin-bottom: 12px; color: #ccc; }
+    ul { margin: 0 0 12px 20px; color: #ccc; }
+    li { margin-bottom: 6px; }
+    .info-box {
+      background: #1e1e2e; border-left: 3px solid #ffd700;
+      padding: 12px 16px; margin: 16px 0;
+      border-radius: 6px;
+    }
+    .info-box p { margin-bottom: 6px; }
+    .info-box b { color: #ffd700; }
+/* ===== ТЕЛЕФОН (по умолчанию) ===== */
+.small-img {
+  width: 90%;              /* на телефоне — почти вся ширина */
+  max-width: 400px;
+  display: block;
+  margin: 16px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
 
+/* ===== ПК и ноутбуки ===== */
+@media (min-width: 900px) {
+  .small-img {
+    width: 50%;            /* на ПК — половина ширины статьи */
+    max-width: 400px;
+  }
+}
+  </style>
+</head>
+<body>
+  <button id="back" onclick="window.location.href='../index.html'">⬅ К карте</button>
+
+  <div id="content">
+    <h1>👑 Королевство Эрдуин</h1>
+    <p class="subtitle">Королевство людей</p>
+    <img src="../arts/1537708994_f3e16e560.png" class="small-img">
+    <div class="info-box">
+      <p><b>Население:</b> Неизвестно</p>
+      <p><b>Правитель:</b> Нет</p>
+      <p><b>Основан:</b> ...</p>
+    </div>
+
+    <h2>Описание</h2>
+    <p>Лес "Крея" - запретный лес, охраняемый древней магией. Вход в него разрешен лишь в сопровождении могущественных волшебников или друидов. </p>
+
+    <h2>История</h2>
+    <p>В давние времена его заполоняли энды и живые деревья. Всех, кто входил в этот лес, ждала лишь смерть. И лишь единицам удавалось безопасно выбраться из него.</p>
+
+    <h2>Достопримечательности</h2>
+    <ul>
+      <li>Лагерь ордена 4 волшебников</li>
+      <li>Рунический лагерь друидов</li>
+    </ul>
+  </div>
+
+  <script>
+    const tg = window.Telegram?.WebApp;
+    if (tg) { tg.ready(); tg.expand(); }
+  </script>
+</body>
+</html>
