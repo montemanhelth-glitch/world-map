@@ -114,7 +114,8 @@ position: relative;
       label.className = 'city-label';
       label.style.left = info.x + '%';
       label.style.top = info.y + '%';
-      label.textContent = name;
+     label.textContent = info.label || name;
+label.style.whiteSpace = 'pre-line';   // чтобы \n работал
       wrap.appendChild(label);
     }
 
