@@ -6,8 +6,8 @@
     "article": "articles/krey.html"
   },
   "Королевство Эрдуин": {
-    "x": 56,
-    "y": 56,
+    "x": 58,
+    "y": 54,
     "icon": "icons/castle-people.png",
     "article": "articles/erduin.html"
   }
