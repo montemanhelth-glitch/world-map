@@ -4,13 +4,13 @@
     "y": 44,
     "icon": "icons/tree.png",
     "article": "articles/krey.html",
-    "label": "Лес \nКрэя"
+    "label": "Лес<br>Крэя"
   },
   "Королевство Эрдуин": {
     "x": 58,
     "y": 54,
     "icon": "icons/castle-people.png",
     "article": "articles/erduin.html",
-    "label": "Королевство \nЭрдуин"
+    "label": "Королевство<br>Эрдуин"
   }
 }
