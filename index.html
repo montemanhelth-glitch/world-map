@@ -32,7 +32,7 @@ position: relative;
   display: inline-block;
   line-height: 0;
     }
-   /* ===== ТЕЛЕФОН (по умолчанию) ===== */
+   
 .city-icon {
   position: absolute;
   width: 25px;
@@ -45,12 +45,13 @@ position: relative;
 .city-icon:active {
   transform: translate(-50%, -50%) scale(1.25);
 }
+
 .city-label {
   position: absolute;
   transform: translate(-50%, 0);
-  margin-top: 18px;              /* отступ от центра иконки вниз */
+  margin-top: 18px;        /* = 12px (половина иконки 25) + 6px зазор */
   color: #fff;
-  font-size: 8px;
+  font-size: 9px;
   font-weight: bold;
   text-shadow: 0 0 4px #000, 0 0 4px #000, 0 0 4px #000;
   pointer-events: none;
@@ -58,8 +59,12 @@ position: relative;
 }
 
 @media (min-width: 900px) {
+  .city-icon {
+    width: 55px;
+    height: 55px;
+  }
   .city-label {
-    margin-top: 65px;            /* на ПК отступ больше — иконка крупнее */
+    margin-top: 34px;      /* = 27px (половина иконки 55) + 7px зазор */
     font-size: 14px;
   }
 }
