@@ -6,3 +6,11 @@
     "article": "articles/krey.html"
   }
 }
+{
+  "Королевство Эрдуин": {
+    "x": 60,
+    "y": 60,
+    "icon": "icons/castle-people.png",
+    "article": "articles/erduin.html"
+  }
+}
