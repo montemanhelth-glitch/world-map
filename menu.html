@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Главное меню</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      /* Сюда потом вставишь свой арт. Пока - темный фон */
+      background: #0d0d1a url('menu-bg.jpg') no-repeat center center;
+      background-size: cover;
+      font-family: -apple-system, sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      position: relative;
+    }
+
+    /* Затемнение фона, чтобы кнопки читались на любом арте */
+    body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    .menu-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+      max-width: 350px;
+      padding: 20px;
+      z-index: 2; /* чтобы кнопки были поверх затемнения */
+    }
+
+    .menu-btn {
+      display: block;
+      text-decoration: none;
+      text-align: center;
+      background: rgba(20, 20, 30, 0.85);
+      color: #ffd700;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 18px;
+      border: 2px solid #ffd700;
+      border-radius: 12px;
+      transition: 0.2s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+      text-shadow: 0 2px 4px #000;
+    }
+
+    .menu-btn:hover, .menu-btn:active {
+      background: rgba(255, 215, 0, 0.2);
+      transform: scale(1.05);
+    }
+
+    /* Неактивная кнопка (заглушка) */
+    .menu-btn.disabled {
+      color: #666;
+      border-color: #444;
+      background: rgba(10, 10, 15, 0.85);
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="menu-container">
+    <a href="index.html" class="menu-btn">🗺 Карта</a>
+    
+    <!-- Когда сделаешь страницы, замени href="#" на нужный файл и убери класс "disabled" -->
+    <a href="#" class="menu-btn disabled">👤 Персонажи</a>
+    <a href="#" class="menu-btn disabled">🏛 Боги</a>
+    <a href="#" class="menu-btn disabled">🐉 Бестиарий</a>
+  </div>
+
+  <script>
+    const tg = window.Telegram?.WebApp;
+    if (tg) { tg.ready(); tg.expand(); }
+  </script>
+</body>
+</html>
