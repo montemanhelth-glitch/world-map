@@ -104,7 +104,7 @@
 
 <!-- Ползунок громкости в углу -->
 <div id="music-controls">
-  🔊 <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.5" title="Громкость">
+  🔊 <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.2" title="Громкость">
 </div>
   <div class="menu-container">
    
@@ -122,7 +122,7 @@ const music = document.getElementById('bg-music');
 const volumeSlider = document.getElementById('volume-slider');
 
 // Устанавливаем начальную громкость
-music.volume = volumeSlider.value;
+music.volume = 0.2; // Громкость 20% (тихий фон)
 
 // Функция попытки запуска
 function tryPlayMusic() {
