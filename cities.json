@@ -79,14 +79,14 @@
   "Морские твари2": {
     "x": 90,
     "y": 75,
-    "icon": "icons/tentacles.png",
+    "icon": "icons/monster.png",
     "article": "articles/monsters.html",
     "label": "Морские<br>твари"
 },
   "Морские твари3": {
     "x": 69,
     "y": 15,
-    "icon": "icons/monster.png",
+    "icon": "icons/tentacles.png",
     "article": "articles/monsters.html",
     "label": "Морские<br>твари"
 }
