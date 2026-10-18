@@ -12,5 +12,12 @@
     "icon": "icons/castle-people.png",
     "article": "articles/erduin.html",
     "label": "Королевство<br>Эрдуин"
+  },
+  "Земли Эльфов Мелорн": {
+    "x": 79,
+    "y": 45,
+    "icon": "icons/elf.png",
+    "article": "articles/melorn.html",
+    "label": "Земли Эльфов<br>Мелорн"
   }
 }
