@@ -37,7 +37,7 @@
   "Портовый город Бриулфаст": {
     "x": 59,
     "y": 19,
-    "icon": "icons/seaport.png",
+    "icon": "icons/castle.png",
     "article": "articles/briulfast.html",
     "label": "Портовый город<br>Бриулфаст"
 }
