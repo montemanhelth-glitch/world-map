@@ -2,7 +2,7 @@
   "Лес Крея": {
     "x": 50,
     "y": 44,
-    "icon": "icons/forest.png",
+    "icon": "icons/travel.png",
     "article": "articles/krey.html",
     "label": "Лес<br>Крея"
   },
