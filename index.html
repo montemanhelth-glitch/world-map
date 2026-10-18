@@ -6,6 +6,24 @@
   <title>Карта мира</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
+    #back-to-menu {
+  position: fixed;
+  left: 15px;
+  top: 15px;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffd700;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: 1px solid #ffd700;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: inherit;
+}
+#back-to-menu:hover {
+  background: rgba(255, 215, 0, 0.2);
+}
       #map-wrap {
 position: relative;
   width: 100vw;
@@ -30,7 +48,6 @@ position: relative;
   display: inline-block;
   line-height: 0;
     }
-   
 .city-icon {
   position: absolute;
   width: 25px;
@@ -43,7 +60,6 @@ position: relative;
 .city-icon:active {
   transform: translate(-50%, -50%) scale(1.25);
 }
-
 .city-label {
   position: absolute;
   transform: translate(-50%, 0);
@@ -57,7 +73,6 @@ position: relative;
   text-align: center;        /* ← для центрирования строк */
   line-height: 1;          /* ← компактный интервал */
 }
-
 @media (min-width: 900px) {
   .city-icon {
     width: 55px;
@@ -79,12 +94,12 @@ position: relative;
   </style>
 </head>
 <body>
+  <a href="menu.html" id="back-to-menu">⬅ В меню</a>
 <div id="map-wrap">
   <div id="map-box">
     <img id="map-img" src="map.jpg" alt="Карта">
   </div>
 </div>
-
   <script>
       const tg = window.Telegram?.WebApp;
     if (tg) { tg.ready(); tg.expand(); }
