@@ -6,6 +6,30 @@
   <title>Главное меню</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
+   
+    /* Стили для блока с ползунком музыки */
+#music-controls {
+  position: fixed;
+  right: 15px;
+  top: 15px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #ffd700;
+  color: #ffd700;
+  font-size: 14px;
+}
+
+#volume-slider {
+  width: 80px;
+  cursor: pointer;
+  accent-color: #ffd700;
+}
+    
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       /* Сюда потом вставишь свой арт. Пока - темный фон */
@@ -73,7 +97,17 @@
 </head>
 <body>
 
+  <!-- Плеер (скрыт) -->
+<audio id="bg-music" loop>
+  <source src="audio/music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Ползунок громкости в углу -->
+<div id="music-controls">
+  🔊 <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.5" title="Громкость">
+</div>
   <div class="menu-container">
+   
     <a href="index.html" class="menu-btn">🗺 Карта</a>
     
     <!-- Когда сделаешь страницы, замени href="#" на нужный файл и убери класс "disabled" -->
@@ -83,6 +117,36 @@
   </div>
 
   <script>
+    // ===== ЛОГИКА МУЗЫКИ ДЛЯ МЕНЮ =====
+const music = document.getElementById('bg-music');
+const volumeSlider = document.getElementById('volume-slider');
+
+// Устанавливаем начальную громкость
+music.volume = volumeSlider.value;
+
+// Функция попытки запуска
+function tryPlayMusic() {
+  music.play().then(() => {
+    // Если музыка заиграла — убираем слушатели, чтобы не тратить ресурсы
+    document.removeEventListener('click', tryPlayMusic);
+    document.removeEventListener('touchstart', tryPlayMusic);
+  }).catch(() => {
+    // Если браузер заблокировал — ждем клика
+  });
+}
+
+// 1. Пытаемся запустить сразу при загрузке
+tryPlayMusic();
+
+// 2. Если не вышло — запускаем при первом клике/тапе по экрану
+document.addEventListener('click', tryPlayMusic);
+document.addEventListener('touchstart', tryPlayMusic);
+
+// Обработка ползунка
+volumeSlider.addEventListener('input', (e) => {
+  music.volume = e.target.value;
+});
+    
     const tg = window.Telegram?.WebApp;
     if (tg) { tg.ready(); tg.expand(); }
   </script>
