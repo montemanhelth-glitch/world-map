@@ -33,5 +33,12 @@
     "icon": "icons/neuschwanstein-castle.png",
     "article": "articles/blanc.html",
     "label": "Поселение<br>Бланс"
+},
+  "Портовый город Бриулфаст": {
+    "x": 59,
+    "y": 19,
+    "icon": "icons/seaport.png",
+    "article": "articles/briulfast.html",
+    "label": "Портовый город<br>Бриулфаст"
 }
 }
