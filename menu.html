@@ -98,7 +98,7 @@
 <body>
 
   <!-- Плеер (скрыт) -->
-<audio id="bg-music" loop>
+<audio id="bg-music" loop volume="0.5">
   <source src="audio/music.mp3" type="audio/mpeg">
 </audio>
 
@@ -121,8 +121,12 @@
 const music = document.getElementById('bg-music');
 const volumeSlider = document.getElementById('volume-slider');
 
-// Устанавливаем начальную громкость
-music.volume = 0.2; // Громкость 20% (тихий фон)
+// 0.5 - это максимальная громкость ползунка (например, 50% от файла)
+// Если хочешь еще тише, поставь 0.3 или 0.2
+const MAX_VOLUME = 0.5; 
+
+// Устанавливаем начальную громкость (ползунок стоит на середине)
+music.volume = volumeSlider.value * MAX_VOLUME;
 
 // Функция попытки запуска
 function tryPlayMusic() {
@@ -142,9 +146,9 @@ tryPlayMusic();
 document.addEventListener('click', tryPlayMusic);
 document.addEventListener('touchstart', tryPlayMusic);
 
-// Обработка ползунка
 volumeSlider.addEventListener('input', (e) => {
-  music.volume = e.target.value;
+  // Теперь ползунок управляет громкостью, но она ограничена MAX_VOLUME
+  music.volume = e.target.value * MAX_VOLUME;
 });
     
     const tg = window.Telegram?.WebApp;
