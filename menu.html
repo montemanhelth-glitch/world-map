@@ -7,27 +7,19 @@
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
    
-    /* Стили для блока с ползунком музыки */
-#music-controls {
-  position: fixed;
-  right: 15px;
-  top: 15px;
-  z-index: 1000;
+  #music-btn {
+  background: none;
+  border: none;
+  font-size: 20px; /* Размер иконки колонки */
+  cursor: pointer;
+  padding: 0;
   display: flex;
   align-items: center;
-  gap: 8px;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 8px 12px;
-  border-radius: 20px;
-  border: 1px solid #ffd700;
-  color: #ffd700;
-  font-size: 14px;
+  justify-content: center;
+  transition: transform 0.1s;
 }
-
-#volume-slider {
-  width: 80px;
-  cursor: pointer;
-  accent-color: #ffd700;
+#music-btn:active {
+  transform: scale(0.8); /* Легкое нажатие */
 }
     
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -101,13 +93,13 @@
 <audio id="bg-music" loop volume="0.5">
   <source src="audio/music.mp3" type="audio/mpeg">
 </audio>
-
-<!-- Ползунок громкости в углу -->
 <div id="music-controls">
-  🔊 <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.2" title="Громкость">
+  <button id="music-btn">🔇</button>
+  <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.5" title="Громкость">
 </div>
+  
   <div class="menu-container">
-   
+    
     <a href="index.html" class="menu-btn">🗺 Карта</a>
     
     <!-- Когда сделаешь страницы, замени href="#" на нужный файл и убери класс "disabled" -->
@@ -117,38 +109,54 @@
   </div>
 
   <script>
-    // ===== ЛОГИКА МУЗЫКИ ДЛЯ МЕНЮ =====
+    // ===== ЛОГИКА МУЗЫКИ =====
 const music = document.getElementById('bg-music');
+const musicBtn = document.getElementById('music-btn');
 const volumeSlider = document.getElementById('volume-slider');
 
-// 0.5 - это максимальная громкость ползунка (например, 50% от файла)
-// Если хочешь еще тише, поставь 0.3 или 0.2
-const MAX_VOLUME = 0.5; 
+// Максимальная громкость (чтобы было не слишком громко)
+const MAX_VOLUME = 0.4; 
 
-// Устанавливаем начальную громкость (ползунок стоит на середине)
+// Устанавливаем начальную громкость
 music.volume = volumeSlider.value * MAX_VOLUME;
 
-// Функция попытки запуска
-function tryPlayMusic() {
-  music.play().then(() => {
-    // Если музыка заиграла — убираем слушатели, чтобы не тратить ресурсы
-    document.removeEventListener('click', tryPlayMusic);
-    document.removeEventListener('touchstart', tryPlayMusic);
-  }).catch(() => {
-    // Если браузер заблокировал — ждем клика
-  });
+// Функция, которая просто меняет иконку (включена или выключена)
+function updateBtnIcon() {
+  if (music.paused) {
+    musicBtn.innerHTML = '🔇'; // Выключено
+  } else {
+    musicBtn.innerHTML = '🔊'; // Играет
+  }
 }
 
-// 1. Пытаемся запустить сразу при загрузке
+// 1. Пытаемся запустить сразу (автоплей)
+function tryPlayMusic() {
+  music.play().then(() => {
+    updateBtnIcon();
+    document.removeEventListener('click', tryPlayMusic);
+    document.removeEventListener('touchstart', tryPlayMusic);
+  }).catch(() => {});
+}
 tryPlayMusic();
 
-// 2. Если не вышло — запускаем при первом клике/тапе по экрану
+// 2. Запуск при первом клике, если браузер заблокировал
 document.addEventListener('click', tryPlayMusic);
 document.addEventListener('touchstart', tryPlayMusic);
 
+// 3. Кнопка-колонка (Клик = Пауза/Играть)
+musicBtn.addEventListener('click', (e) => {
+  e.stopPropagation(); // Чтобы клик по кнопке не запускал автоплей дважды
+  if (music.paused) {
+    music.play();
+  } else {
+    music.pause();
+  }
+  updateBtnIcon();
+});
+
+// 4. Ползунок
 volumeSlider.addEventListener('input', (e) => {
-  // Теперь ползунок управляет громкостью, но она ограничена MAX_VOLUME
-  music.volume = e.target.value * MAX_VOLUME;
+  music.volume = e.target.value * MAX_VOLUME = 0.5;
 });
     
     const tg = window.Telegram?.WebApp;
