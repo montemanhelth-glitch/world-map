@@ -7,19 +7,26 @@
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
    
-  #music-btn {
-  background: none;
-  border: none;
-  font-size: 20px; /* Размер иконки колонки */
-  cursor: pointer;
-  padding: 0;
+  /* Панель с музыкой */
+#music-controls {
+  position: fixed;
+  right: 15px;
+  top: 15px;
+  z-index: 1000; /* Ставим поверх затемнения */
   display: flex;
   align-items: center;
-  justify-content: center;
-  transition: transform 0.1s;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 8px 15px;
+  border-radius: 20px;
+  border: 1px solid #ffd700;
 }
-#music-btn:active {
-  transform: scale(0.8); /* Легкое нажатие */
+
+/* Ползунок */
+#volume-slider {
+  width: 80px;
+  cursor: pointer;
+  accent-color: #ffd700;
 }
     
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -90,7 +97,7 @@
 <body>
 
   <!-- Плеер (скрыт) -->
-<audio id="bg-music" loop volume="0.5">
+<audio id="bg-music" loop>
   <source src="audio/music.mp3" type="audio/mpeg">
 </audio>
 <div id="music-controls">
@@ -156,11 +163,11 @@ musicBtn.addEventListener('click', (e) => {
 
 // 4. Ползунок
 volumeSlider.addEventListener('input', (e) => {
-  music.volume = e.target.value * MAX_VOLUME = 0.5;
+  music.volume = e.target.value * MAX_VOLUME;
 });
     
-    const tg = window.Telegram?.WebApp;
-    if (tg) { tg.ready(); tg.expand(); }
+const tg = window.Telegram?.WebApp;
+if (tg) { tg.ready(); tg.expand(); }
   </script>
 </body>
 </html>
