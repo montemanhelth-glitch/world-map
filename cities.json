@@ -40,5 +40,19 @@
     "icon": "icons/castle.png",
     "article": "articles/briulfast.html",
     "label": "Портовый город<br>Бриулфаст"
+},
+  "Крепость голлиафов Нутрам": {
+    "x": 78,
+    "y": 25,
+    "icon": "icons/fortress goiaph.png",
+    "article": "articles/nutram.html",
+    "label": "Крепость голлиафов<br>Нутрам"
+},
+  "Крепость дварфов Гордон": {
+    "x": 35,
+    "y": 16,
+    "icon": "icons/fortress.png",
+    "article": "articles/gordon.html",
+    "label": "Крепость дварфов<br>Гордон"
 }
 }
