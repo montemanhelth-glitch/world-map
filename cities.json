@@ -64,7 +64,7 @@
 },
   "Бесплодные земли": {
     "x": 48,
-    "y": 63,
+    "y": 60,
     "icon": "icons/volcano.png",
     "article": "articles/volcano.html",
     "label": "Бесплодные<br>земли"
