@@ -19,5 +19,11 @@
     "icon": "icons/elf.png",
     "article": "articles/melorn.html",
     "label": "Земли Эльфов<br>Мелорн"
-  }
+  },
+  "Земли монстров": {
+    "x": 40,
+    "y": 79,
+    "icon": "icons/castle evil.png",
+    "article": "articles/evil.html",
+    "label": "Земли<br>монстров"
 }
