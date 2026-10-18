@@ -41,6 +41,13 @@
     "article": "articles/briulfast.html",
     "label": "Портовый город<br>Бриулфаст"
 },
+  "Портовый город Цэнси": {
+    "x": 13,
+    "y": 35,
+    "icon": "icons/castle.png",
+    "article": "articles/censy.html",
+    "label": "Портовый город<br>Цэнси"
+},
   "Крепость голлиафов Нутрам": {
     "x": 78,
     "y": 25,
@@ -54,5 +61,33 @@
     "icon": "icons/fortress.png",
     "article": "articles/gordon.html",
     "label": "Крепость дварфов<br>Гордон"
+},
+  "Бесплодные земли": {
+    "x": 48,
+    "y": 63,
+    "icon": "icons/volcano.png",
+    "article": "articles/volcano.html",
+    "label": "Бесплодные<br>земли"
+},
+  "Морские твари1": {
+    "x": 8,
+    "y": 51,
+    "icon": "icons/monster.png",
+    "article": "articles/monsters.html",
+    "label": "Морские<br>твари"
+},
+  "Морские твари2": {
+    "x": 90,
+    "y": 75,
+    "icon": "icons/tentacles.png",
+    "article": "articles/monsters.html",
+    "label": "Морские<br>твари"
+},
+  "Морские твари3": {
+    "x": 69,
+    "y": 15,
+    "icon": "icons/monster.png",
+    "article": "articles/monsters.html",
+    "label": "Морские<br>твари"
 }
 }
