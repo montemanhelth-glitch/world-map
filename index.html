@@ -8,6 +8,24 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: #0d0d1a; font-family: -apple-system, sans-serif; overflow: hidden; }
+    #music-btn {
+  position: fixed;
+  right: 15px;
+  top: 15px;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffd700;
+  border: 1px solid #ffd700;
+  padding: 10px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: 0.3s;
+}
+#music-btn:hover {
+  background: rgba(255, 215, 0, 0.2);
+}
     #map-wrap {
 position: relative;
   width: 100vw;
@@ -86,8 +104,28 @@ position: relative;
     <img id="map-img" src="map.jpg" alt="Карта">
   </div>
 </div>
+  <!-- Кнопка управления музыкой -->
+<button id="music-btn">🔇 Включить музыку</button>
+
+<!-- Сам аудиоплеер (скрыт) -->
+<audio id="bg-music" loop>
+  <source src="audio/music.mp3" type="audio/mpeg">
+</audio>
 
   <script>
+    // Логика включения/выключения музыки
+const music = document.getElementById('bg-music');
+const musicBtn = document.getElementById('music-btn');
+
+musicBtn.addEventListener('click', () => {
+  if (music.paused) {
+    music.play();
+    musicBtn.innerHTML = '🔊 Выключить музыку';
+  } else {
+    music.pause();
+    musicBtn.innerHTML = '🔇 Включить музыку';
+  }
+});
     const tg = window.Telegram?.WebApp;
     if (tg) { tg.ready(); tg.expand(); }
 
