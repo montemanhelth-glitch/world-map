@@ -26,5 +26,12 @@
     "icon": "icons/castle evil.png",
     "article": "articles/evil.html",
     "label": "Земли<br>монстров"
+},
+  "Поселение Бланс": {
+    "x": 41,
+    "y": 36,
+    "icon": "icons/neuschwanstein-castle.png",
+    "article": "articles/blanc.html",
+    "label": "Поселение<br>Бланс"
 }
 }
