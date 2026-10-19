@@ -33,12 +33,13 @@
 
 #map-img {
   display: block;
-  width: 100vw;             /* Принудительно на всю ширину экрана */
-  height: 100vh;            /* Принудительно на всю высоту экрана */
-  object-fit: cover;        /* Карта заполнит экран целиком, без пустых полос */
-  object-position: center;  /* Центрируем картинку */
+  max-width: 100%;
+  max-height: 100vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
-}
+
 #map-box {
   position: relative;
   max-width: 100%;
