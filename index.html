@@ -20,26 +20,21 @@
   font-weight: bold;
   font-family: inherit;
 }
-#map-wrap {
+    #map-wrap {
   position: relative;
   width: 100vw;
   height: 100vh;
-  overflow: hidden; /* Запрещаем любые скроллы и сдвиги */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #0d0d1a; /* Темный фон, чтобы не было белых полос */
+  overflow: auto; /* Оставляем возможность прокрутки, если карта длинная */
+  background: #2c2c2c;
+  display: block; /* Убираем флекс-центровку, чтобы карта прилипала к верху */
 }
 
 #map-img {
   display: block;
-  max-width: 100%;
-  max-height: 100vh;
-  width: auto;
-  height: auto;
-  object-fit: contain;
+  width: 100vw;       /* Карта всегда занимает 100% ширины экрана (без зазоров) */
+  height: auto;       /* Высота подстраивается, чтобы сохранить пропорции */
+  min-height: 100vh;  /* Если карта слишком короткая, она растянется на весь экран */
 }
-
 #map-box {
   position: relative;
   max-width: 100%;
