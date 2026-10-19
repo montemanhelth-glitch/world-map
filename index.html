@@ -20,22 +20,24 @@
   font-weight: bold;
   font-family: inherit;
 }
-      #map-wrap {
-position: relative;
+#map-wrap {
+  position: relative;
   width: 100vw;
   height: 100vh;
-  overflow: auto;
+  overflow: hidden; /* Запрещаем любые скроллы и сдвиги */
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #0d0d1a; /* Темный фон, чтобы не было белых полос */
 }
-    #map-img {
+
+#map-img {
   display: block;
-  max-width: 100%;
-  max-height: 100vh;
-  width: auto;
-  height: auto;
-  object-fit: contain;
+  width: 100vw;             /* Принудительно на всю ширину экрана */
+  height: 100vh;            /* Принудительно на всю высоту экрана */
+  object-fit: cover;        /* Карта заполнит экран целиком, без пустых полос */
+  object-position: center;  /* Центрируем картинку */
+}
 }
 #map-box {
   position: relative;
