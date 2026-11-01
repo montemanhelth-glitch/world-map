@@ -6,28 +6,6 @@
   <title>Главное меню</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
-   
-  /* Панель с музыкой */
-#music-controls {
-  position: fixed;
-  right: 15px;
-  top: 15px;
-  z-index: 1000; /* Ставим поверх затемнения */
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 8px 15px;
-  border-radius: 20px;
-  border: 1px solid #ffd700;
-}
-
-/* Ползунок */
-#volume-slider {
-  width: 80px;
-  cursor: pointer;
-  accent-color: #ffd700;
-}
     
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -95,9 +73,7 @@
   </style>
 </head>
 <body>
-
-  <!-- Плеер (скрыт) -->
-<audio id="bg-music" loop>
+  <audio id="bg-music" loop>
   <source src="audio/music.mp3" type="audio/mpeg">
 </audio>
 <div id="music-controls">
@@ -116,58 +92,9 @@
   </div>
 
   <script>
-    // ===== ЛОГИКА МУЗЫКИ =====
-const music = document.getElementById('bg-music');
-const musicBtn = document.getElementById('music-btn');
-const volumeSlider = document.getElementById('volume-slider');
-
-// Максимальная громкость (чтобы было не слишком громко)
-const MAX_VOLUME = 0.4; 
-
-// Устанавливаем начальную громкость
-music.volume = volumeSlider.value * MAX_VOLUME;
-
-// Функция, которая просто меняет иконку (включена или выключена)
-function updateBtnIcon() {
-  if (music.paused) {
-    musicBtn.innerHTML = '🔇'; // Выключено
-  } else {
-    musicBtn.innerHTML = '🔊'; // Играет
-  }
-}
-
-// 1. Пытаемся запустить сразу (автоплей)
-function tryPlayMusic() {
-  music.play().then(() => {
-    updateBtnIcon();
-    document.removeEventListener('click', tryPlayMusic);
-    document.removeEventListener('touchstart', tryPlayMusic);
-  }).catch(() => {});
-}
-tryPlayMusic();
-
-// 2. Запуск при первом клике, если браузер заблокировал
-document.addEventListener('click', tryPlayMusic);
-document.addEventListener('touchstart', tryPlayMusic);
-
-// 3. Кнопка-колонка (Клик = Пауза/Играть)
-musicBtn.addEventListener('click', (e) => {
-  e.stopPropagation(); // Чтобы клик по кнопке не запускал автоплей дважды
-  if (music.paused) {
-    music.play();
-  } else {
-    music.pause();
-  }
-  updateBtnIcon();
-});
-
-// 4. Ползунок
-volumeSlider.addEventListener('input', (e) => {
-  music.volume = e.target.value * MAX_VOLUME;
-});
-    
 const tg = window.Telegram?.WebApp;
 if (tg) { tg.ready(); tg.expand(); }
   </script>
+  <script src="music.js"></script>
 </body>
 </html>
