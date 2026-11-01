@@ -57,6 +57,11 @@
   </style>
 </head>
 <body>
+
+  <audio id="bg-music" loop>
+  <source src="../audio/music.mp3" type="audio/mpeg">
+</audio>
+  
   <button id="back" onclick="window.location.href='../index.html'">⬅ К карте</button>
 
   <div id="content">
@@ -86,5 +91,6 @@
     const tg = window.Telegram?.WebApp;
     if (tg) { tg.ready(); tg.expand(); }
   </script>
+  <script src="../music.js"></script>
 </body>
 </html>
