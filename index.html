@@ -26,6 +26,43 @@ body {
   font-weight: bold;
   font-family: inherit;
 }
+    
+    /* Панель управления музыкой */
+#music-controls {
+  position: fixed;
+  right: 15px;
+  top: 15px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 8px 15px;
+  border-radius: 20px;
+  border: 1px solid #ffd700;
+}
+
+#music-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s;
+}
+
+#music-btn:active {
+  transform: scale(0.8);
+}
+
+#volume-slider {
+  width: 80px;
+  cursor: pointer;
+  accent-color: #ffd700;
+}
 #map-wrap {
   position: relative;
   width: 100vw;
