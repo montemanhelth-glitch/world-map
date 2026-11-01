@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Видеоархив</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #1a1a1a;
+      font-family: -apple-system, sans-serif;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Кнопка возврата в меню */
+    #back-to-menu {
+      position: fixed;
+      left: 15px;
+      top: 15px;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      border: 1px solid #ffd700;
+    }
+    #back-to-menu:hover { background: rgba(255, 215, 0, 0.2); }
+
+    /* Контейнер для видео */
+    .video-container {
+      width: 100%;
+      max-width: 900px;
+      margin: 80px auto 20px;
+      padding: 0 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Сам плеер */
+    #my-video {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+      border-radius: 12px;
+      border: 2px solid #ffd700;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.8);
+    }
+
+    /* Название видео */
+    #video-title {
+      text-align: center;
+      color: #ffd700;
+      font-size: 20px;
+      margin-top: -10px;
+      text-shadow: 0 2px 4px #000;
+    }
+
+    /* Кнопки переключения */
+    .video-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .vid-btn {
+      background: rgba(255, 215, 0, 0.1);
+      color: #ffd700;
+      border: 1px solid #ffd700;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+      transition: 0.2s;
+      font-family: inherit;
+    }
+
+    .vid-btn:hover { background: rgba(255, 215, 0, 0.3); }
+    
+    .vid-btn.active {
+      background: #ffd700;
+      color: #000;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+    }
+  </style>
+</head>
+<body>
+
+  <a href="menu.html" id="back-to-menu">⬅ В меню</a>
+
+  <div class="video-container">
+    <video id="my-video" controls playsinline>
+      <source src="video/video1.mp4" type="video/mp4">
+      Ваш браузер не поддерживает видео.
+    </video>
+    
+    <h2 id="video-title">Видео 1</h2>
+
+    <div class="video-buttons">
+      <button class="vid-btn active" data-src="video/video1.mp4" data-title="Видео 1">Видео 1</button>
+      <button class="vid-btn" data-src="video/video2.mp4" data-title="Видео 2">Видео 2</button>
+      <button class="vid-btn" data-src="video/video3.mp4" data-title="Видео 3">Видео 3</button>
+    </div>
+  </div>
+
+  <script>
+    const tg = window.Telegram?.WebApp;
+    if (tg) { tg.ready(); tg.expand(); }
+
+    const videoPlayer = document.getElementById('my-video');
+    const videoTitle = document.getElementById('video-title');
+    const videoBtns = document.querySelectorAll('.vid-btn');
+
+    videoBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Убираем подсветку со всех кнопок
+        videoBtns.forEach(b => b.classList.remove('active'));
+        // Подсвечиваем нажатую
+        btn.classList.add('active');
+        
+        // Меняем видео и заголовок
+        videoPlayer.src = btn.getAttribute('data-src');
+        videoTitle.textContent = btn.getAttribute('data-title');
+        
+        // Запускаем
+        videoPlayer.load();
+        videoPlayer.play();
+      });
+    });
+  </script>
+</body>
+</html>
