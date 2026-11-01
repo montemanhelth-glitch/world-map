@@ -26,31 +26,28 @@ body {
   font-weight: bold;
   font-family: inherit;
 }
-    #map-wrap {
+#map-wrap {
   position: relative;
   width: 100vw;
   height: 100vh;
   overflow-y: auto;   /* Прокрутка вниз, если экран слишком узкий */
   overflow-x: hidden; /* Запрет прокрутки в стороны */
   background: #2c2c2c;
-  
-  /* Вот эти три строчки центрируют карту: */
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Центрирует по вертикали */
 }
-#map-img {
-  display: block;
-  width: 100vw;       /* Карта занимает ровно 100% ширины экрана */
-  height: auto;       /* Высота подстраивается автоматически, сохраняя пропорции */
-}
+
 #map-box {
   position: relative;
-  max-width: 100%;
-  max-height: 100vh;
-  display: inline-block;
+  width: 100%;         /* Коробка строго по ширине экрана */
   line-height: 0;
-    }
+  margin: 0 auto;      /* Центрируем коробку */
+}
+
+/* А картинка внутри просто занимает 100% ширины */
+#map-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 .city-icon {
   position: absolute;
   width: 25px;
