@@ -30,19 +30,19 @@ body {
   position: relative;
   width: 100vw;
   height: 100vh;
-  overflow-y: auto;   /* Прокрутка вниз, если экран слишком узкий */
-  overflow-x: hidden; /* Запрет прокрутки в стороны */
+  overflow-y: auto;   /* Позволяет прокручивать, если карта длиннее экрана */
+  overflow-x: hidden;
   background: #2c2c2c;
+  display: flex;      /* Включаем Flexbox для центрирования */
 }
 
 #map-box {
   position: relative;
-  width: 100%;         /* Коробка строго по ширине экрана */
+  width: 100%;         /* Карта всегда на всю ширину */
+  margin: auto;        /* Вот этот трюк центрирует её по вертикали и горизонтали! */
   line-height: 0;
-  margin: 0 auto;      /* Центрируем коробку */
 }
 
-/* А картинка внутри просто занимает 100% ширины */
 #map-img {
   display: block;
   width: 100%;
