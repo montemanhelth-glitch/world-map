@@ -36,15 +36,16 @@ document.addEventListener("DOMContentLoaded", () => {
     musicBtn.innerHTML = music.paused ? '🔇' : '🔊';
   }
 
-  // 4. Попытка автозапуска
-  function tryPlayMusic() {
-    // Если пользователь сам поставил на паузу в прошлый раз - не включаем
-    if (sessionStorage.getItem('musicPaused') === 'true') {
-      updateBtnIcon();
-      return;
-    }
-    
-    music.play().then(() => {
+// 4. Попытка автозапуска
+function tryPlayMusic() {
+  // Если пользователь сам выключил музыку (или еще не включал) - не запускаем
+  // (Если в памяти пусто, значит это первый заход, и музыка по умолчанию должна быть выключена)
+  if (sessionStorage.getItem('musicPaused') !== 'false') {
+    updateBtnIcon();
+    return;
+  }
+  
+  music.play().then(() => {
       updateBtnIcon();
       document.removeEventListener('click', tryPlayMusic);
       document.removeEventListener('touchstart', tryPlayMusic);
@@ -55,20 +56,20 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener('click', tryPlayMusic);
   document.addEventListener('touchstart', tryPlayMusic);
 
-  // 5. Кнопка паузы/воспроизведения
-  if (musicBtn) {
-    musicBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (music.paused) {
-        music.play();
-        sessionStorage.setItem('musicPaused', 'false');
-      } else {
-        music.pause();
-        sessionStorage.setItem('musicPaused', 'true');
-      }
-      updateBtnIcon();
-    });
-  }
+// 5. Кнопка паузы/воспроизведения
+if (musicBtn) {
+  musicBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (music.paused) {
+      music.play();
+      sessionStorage.setItem('musicPaused', 'false'); // Запомнили, что включили
+    } else {
+      music.pause();
+      sessionStorage.setItem('musicPaused', 'true'); // Запомнили, что выключили
+    }
+    updateBtnIcon();
+  });
+}
 
   // 6. Ползунок громкости
   if (volumeSlider) {
