@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Земли монстров</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    /* Стиль пустынных пустошей: обожженный песок и старая кожа */
+    body {
+      background: #1a1108; 
+      background-image: radial-gradient(circle at top, #2b1a0c 0%, #120b04 100%);
+      color: #d6c3a5; 
+      font-family: -apple-system, sans-serif;
+      line-height: 1.7; padding-bottom: 40px;
+      min-height: 100vh;
+    }
+
+    #back {
+      position: fixed; left: 12px; top: 12px;
+      background: rgba(30, 15, 5, 0.85); 
+      border: 1px solid #8b3a0e; /* Цвет запекшейся крови */
+      color: #d35400; padding: 10px 16px;
+      border-radius: 20px; font-size: 14px;
+      cursor: pointer; z-index: 10;
+      transition: 0.3s;
+    }
+    #back:hover {
+      background: rgba(211, 84, 0, 0.2);
+      box-shadow: 0 0 12px #d35400;
+    }
+
+    #content { padding: 20px; margin-top: 50px; max-width: 900px; margin-left: auto; margin-right: auto; }
+    
+    /* Заголовки в цвете раскаленного металла */
+    h1 { 
+      font-size: 28px; margin-bottom: 8px; 
+      color: #e67e22; 
+      text-shadow: 0 0 12px rgba(230, 126, 34, 0.5);
+      letter-spacing: 1px;
+    }
+    
+    .subtitle { 
+      color: #a0522d; 
+      margin-bottom: 20px; font-size: 14px; 
+      text-transform: uppercase; letter-spacing: 2px;
+      font-weight: bold;
+    }
+
+    h2 {
+      font-size: 18px; margin: 30px 0 12px;
+      color: #d35400; 
+      border-bottom: 1px solid #4a2711;
+      padding-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    p { margin-bottom: 14px; color: #c2ab8e; text-align: justify; }
+    ul { margin: 0 0 14px 20px; color: #c2ab8e; }
+    li { margin-bottom: 8px; }
+    li::marker { color: #d35400; }
+
+    /* Блок с инфой: стиль древней таблички */
+    .info-box {
+      background: rgba(40, 20, 8, 0.8); 
+      border-left: 4px solid #d35400;
+      padding: 16px; margin: 24px 0; border-radius: 4px;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.8), 0 4px 10px rgba(0,0,0,0.5);
+    }
+    .info-box p { margin-bottom: 8px; color: #ebd4b9; text-align: left; }
+    .info-box b { color: #e67e22; }
+
+    /* Блок предупреждения об опасности */
+    .danger-box {
+      background: rgba(80, 10, 10, 0.3);
+      border: 1px solid #8b0000;
+      border-radius: 6px;
+      padding: 15px;
+      margin: 20px 0;
+      text-align: center;
+      color: #ff9999;
+      font-weight: bold;
+      letter-spacing: 1px;
+      box-shadow: 0 0 15px rgba(139, 0, 0, 0.3);
+    }
+
+    /* ===== ТЕЛЕФОН (по умолчанию) ===== */
+    .small-img {
+      width: 95%;
+      max-width: 500px;
+      display: block;
+      margin: 24px auto;
+      border-radius: 4px;
+      border: 2px solid #4a2711;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.9);
+      filter: sepia(0.3) contrast(1.1); /* Легкий эффект старой фотографии */
+    }
+
+    /* ===== ПК и ноутбуки ===== */
+    @media (min-width: 900px) {
+      .small-img {
+        width: 65%; 
+        max-width: 600px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="bg-music" loop>
+    <source src="../audio/music.mp3" type="audio/mpeg">
+  </audio>
+  
+  <button id="back" onclick="window.location.href='../index.html'">⬅ К карте</button>
+
+  <div id="content">
+    <h1>🐉 Земли монстров</h1>
+    <p class="subtitle">Смертельные пустоши</p>
+    
+    <img src="../arts/monsters-land.jpg" class="small-img" alt="Земли монстров">
+    
+    <div class="danger-box">
+      ⚠️ ВНИМАНИЕ: ПУТЕШЕСТВИЕ БЕЗ ОХРАНЫ СМЕРТЕЛЬНО ОПАСНО ⚠️
+    </div>
+
+    <div class="info-box">
+      <p><b>Тип территории:</b> Пустыни и дикие земли</p>
+      <p><b>Уровень угрозы:</b> Критический</p>
+      <p><b>Обитатели:</b> Дикие племена, песчаные черви, ящеры, тролли, циклопы</p>
+    </div>
+
+    <h2>Описание</h2>
+    <p>Земли монстров — это огромные пустынные территории, заполненные дикими племенами и опаснейшими существами. Здесь можно встретить огромных песчаных червей, вырывающихся из-под песка, стада бегущих плотоядных ящеров, троллей, циклопов и множество других тварей, для которых человек — лишь добыча.</p>
+    
+    <p>Дикие племена, населяющие эти земли, крайне неоднородны. Среди них есть и мирные кочевники, готовые к обмену, и кровожадные каннибалы, промышляющие поеданием разумных существ. Встреча с последними не сулит путнику ничего, кроме мучительной смерти.</p>
+
+    <h2>География и Торговля</h2>
+    <p>В основном это безжалостные пустынные земли, где солнце выжигает всё живое. Однако даже здесь есть островки цивилизации — места торговли, расположенные вдоль единственного торгового речного пути. Это тонкая нить, связывающая дикие земли с остальным миром, и единственное безопасное место для путешественников.</p>
+
+    <h2>Известные угрозы</h2>
+    <ul>
+      <li><b>Плотоядные ящеры</b> — передвигаются стадами, сметая всё на своем пути.</li>
+      <li><b>Песчаные черви</b> — гигантские хищники, атакующие из-под земли.</li>
+      <li><b>Племена каннибалов</b> — не признают законов и убивают любого чужака.</li>
+    </ul>
+  </div>
+
+  <script>
+    const tg = window.Telegram?.WebApp;
+    if (tg) { tg.ready(); tg.expand(); }
+  </script>
+  <script src="../music.js"></script>
+</body>
+</html>
