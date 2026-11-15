@@ -7,58 +7,91 @@
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    /* Стиль магического леса: глубокий фиолетовый фон */
     body {
-      background: #0d0d1a; color: #eee;
+      background: #0a0710; 
+      background-image: linear-gradient(180deg, #0a0710 0%, #130a1c 100%);
+      color: #d4cce0; /* Светло-лиловый текст */
       font-family: -apple-system, sans-serif;
       line-height: 1.6; padding-bottom: 40px;
+      min-height: 100vh;
     }
+
     #back {
       position: fixed; left: 12px; top: 12px;
-      background: rgba(0,0,0,0.7); border: none;
-      color: #fff; padding: 10px 16px;
+      background: rgba(20, 10, 30, 0.8); 
+      border: 1px solid #9b59b6; /* Мистический фиолетовый */
+      color: #d7bde2; padding: 10px 16px;
       border-radius: 20px; font-size: 14px;
       cursor: pointer; z-index: 10;
+      transition: 0.3s;
     }
-    #content { padding: 20px; margin-top: 50px; }
-    h1 { font-size: 26px; margin-bottom: 8px; }
-    .subtitle { color: #ffd700; margin-bottom: 20px; font-size: 14px; }
+    #back:hover {
+      background: rgba(155, 89, 182, 0.2);
+      box-shadow: 0 0 10px #9b59b6;
+    }
+
+    #content { padding: 20px; margin-top: 50px; max-width: 900px; margin-left: auto; margin-right: auto; }
+    
+    /* Заголовки в цвете магической энергии */
+    h1 { 
+      font-size: 26px; margin-bottom: 8px; 
+      color: #c39bd3; 
+      text-shadow: 0 0 10px rgba(195, 155, 211, 0.5);
+    }
+    
+    .subtitle { 
+      color: #7dcea0; /* Ядовито-зеленый (цвет магии друидов) */
+      margin-bottom: 20px; font-size: 14px; 
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+
     h2 {
-      font-size: 18px; margin: 24px 0 10px;
-      color: #ffd700; border-bottom: 1px solid #333;
+      font-size: 18px; margin: 28px 0 12px;
+      color: #a569bd; 
+      border-bottom: 1px solid #2e1a3d;
       padding-bottom: 6px;
     }
-    p { margin-bottom: 12px; color: #ccc; }
-    ul { margin: 0 0 12px 20px; color: #ccc; }
-    li { margin-bottom: 6px; }
-    .info-box {
-      background: #1e1e2e; border-left: 3px solid #ffd700;
-      padding: 12px 16px; margin: 16px 0;
-      border-radius: 6px;
-    }
-    .info-box p { margin-bottom: 6px; }
-    .info-box b { color: #ffd700; }
-/* ===== ТЕЛЕФОН (по умолчанию) ===== */
-.small-img {
-  width: 90%;              /* на телефоне — почти вся ширина */
-  max-width: 400px;
-  display: block;
-  margin: 16px auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-}
 
-/* ===== ПК и ноутбуки ===== */
-@media (min-width: 900px) {
-  .small-img {
-    width: 50%;            /* на ПК — половина ширины статьи */
-    max-width: 400px;
-  }
-}
+    p { margin-bottom: 12px; color: #b7a8c4; }
+    ul { margin: 0 0 12px 20px; color: #b7a8c4; }
+    li { margin-bottom: 6px; }
+    li::marker { color: #a569bd; }
+
+    /* Блок с инфой: стиль рун и мха */
+    .info-box {
+      background: rgba(30, 15, 45, 0.6); 
+      border-left: 3px solid #a569bd;
+      padding: 16px; margin: 20px 0; border-radius: 6px;
+      box-shadow: inset 0 0 15px rgba(165, 105, 189, 0.1);
+    }
+    .info-box p { margin-bottom: 6px; color: #e8daef; }
+    .info-box b { color: #a569bd; }
+
+    /* ===== ТЕЛЕФОН (по умолчанию) ===== */
+    .small-img {
+      width: 90%;
+      max-width: 400px;
+      display: block;
+      margin: 24px auto;
+      border-radius: 10px;
+      border: 1px solid #2e1a3d;
+      box-shadow: 0 0 20px rgba(165, 105, 189, 0.3), 0 4px 15px rgba(0,0,0,0.6);
+    }
+
+    /* ===== ПК и ноутбуки ===== */
+    @media (min-width: 900px) {
+      .small-img {
+        width: 50%;
+        max-width: 400px;
+      }
+    }
   </style>
 </head>
 <body>
 
-    <audio id="bg-music" loop>
+  <audio id="bg-music" loop>
     <source src="../audio/music.mp3" type="audio/mpeg">
   </audio>
   
@@ -67,25 +100,27 @@
   <div id="content">
     <h1>🏕️ Лес Крея</h1>
     <p class="subtitle">Запретный лес</p>
-    <img src="../arts/1537708994_f3e16e560.png" class="small-img">
+    
+    <img src="../arts/1537708994_f3e16e560.png" class="small-img" alt="Древний лес Крея">
+    
     <div class="info-box">
       <p><b>Население:</b> Неизвестно</p>
-      <p><b>Правитель:</b> Нет</p>
-      <p><b>Основан:</b> ...</p>
+      <p><b>Правитель:</b> Нет (под контролем древних сил)</p>
+      <p><b>Основан:</b> Эпоха до королевств</p>
     </div>
 
     <h2>Описание</h2>
-    <p>Лес "Крея" - запретный лес, охраняемый древней магией. Вход в него разрешен лишь в сопровождении могущественных волшебников или друидов. </p>
+    <p>Лес "Крея" - запретный лес, охраняемый древней магией. Вход в него разрешен лишь в сопровождении могущественных волшебников или друидов.</p>
 
     <h2>История</h2>
-    <p>В давние времена, когда мир ещё не знал королевских знамён и каменных стен, на этих землях раскинулся лес, чьё имя произносили шёпотом — Крея. Не было места древнее и страшнее. Под его сомкнутыми кронами, куда не проникал даже солнечный свет, обитали энды и живые деревья — исполины, чьи корни пили воду из самых глубин земли, а ветви касались небес.
-
-Крея не знала чужаков. Всякий, кто осмеливался переступить его границу, встречал лишь смерть: тропы сворачивались в кольца, тени оживали, а шёпот листвы становился последней колыбельной для заблудших. Живые деревья не ведали пощады — они были стражей и судьёй в одном лице. Лишь единицам, кого древние силы признавали своими, удавалось выйти из Креи живыми.</p>
+    <p>В давние времена, когда мир ещё не знал королевских знамён и каменных стен, на этих землях раскинулся лес, чьё имя произносили шёпотом — Крея. Не было места древнее и страшнее. Под его сомкнутыми кронами, куда не проникал даже солнечный свет, обитали энды и живые деревья — исполины, чьи корни пили воду из самых глубин земли, а ветви касались небес.</p>
+    <p>Крея не знала чужаков. Всякий, кто осмеливался переступить его границу, встречал лишь смерть: тропы сворачивались в кольца, тени оживали, а шёпот листвы становился последней колыбельной для заблудших. Живые деревья не ведали пощады — они были стражей и судьёй в одном лице. Лишь единицам, кого древние силы признавали своими, удавалось выйти из Креи живыми.</p>
 
     <h2>Достопримечательности</h2>
     <ul>
       <li>Лагерь ордена 4 волшебников</li>
       <li>Рунический лагерь друидов</li>
+      <li>Тропы, сворачивающиеся в кольца</li>
     </ul>
   </div>
 
