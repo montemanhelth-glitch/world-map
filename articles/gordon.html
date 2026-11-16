@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Крепость Гордон</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    /* Стиль дварфийской крепости: камень, медь и янтарь */
+    body {
+      background: #141210; 
+      background-image: linear-gradient(180deg, #141210 0%, #1f1b16 100%);
+      color: #c4b5a0; 
+      font-family: -apple-system, sans-serif;
+      line-height: 1.7; padding-bottom: 40px;
+      min-height: 100vh;
+    }
+
+    #back {
+      position: fixed; left: 12px; top: 12px;
+      background: rgba(25, 20, 15, 0.9); 
+      border: 1px solid #b87333; /* Медный цвет */
+      color: #da8a4e; padding: 10px 16px;
+      border-radius: 20px; font-size: 14px;
+      cursor: pointer; z-index: 10;
+      transition: 0.3s;
+    }
+    #back:hover {
+      background: rgba(184, 115, 51, 0.2);
+      box-shadow: 0 0 12px #b87333;
+    }
+
+    #content { padding: 20px; margin-top: 50px; max-width: 900px; margin-left: auto; margin-right: auto; }
+    
+    h1 { 
+      font-size: 28px; margin-bottom: 8px; 
+      color: #e6a85c; /* Янтарный */
+      text-shadow: 0 0 10px rgba(230, 168, 92, 0.3);
+      letter-spacing: 1px;
+    }
+    
+    .subtitle { 
+      color: #8c6a4e; /* Бронза */
+      margin-bottom: 20px; font-size: 14px; 
+      text-transform: uppercase; letter-spacing: 2px;
+      font-weight: bold;
+    }
+
+    h2 {
+      font-size: 18px; margin: 30px 0 12px;
+      color: #e6a85c; 
+      border-bottom: 1px solid #3a2e22;
+      padding-bottom: 6px;
+    }
+
+    p { margin-bottom: 14px; color: #b8a894; text-align: justify; }
+    ul { margin: 0 0 14px 20px; color: #b8a894; }
+    li { margin-bottom: 8px; }
+    li::marker { color: #e6a85c; }
+
+    /* Блок с инфой: стиль каменной плиты */
+    .info-box {
+      background: rgba(35, 25, 15, 0.7); 
+      border-left: 4px solid #b87333;
+      padding: 16px; margin: 24px 0; border-radius: 4px;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.6), 0 4px 10px rgba(0,0,0,0.5);
+    }
+    .info-box p { margin-bottom: 8px; color: #dcc8b0; text-align: left; }
+    .info-box b { color: #e6a85c; }
+
+    /* Блок с изюминкой (алкоголь) */
+    .highlight-box {
+      background: rgba(80, 50, 10, 0.2);
+      border: 1px solid #b87333;
+      border-radius: 6px;
+      padding: 15px;
+      margin: 20px 0;
+      color: #f0d5b0;
+      box-shadow: 0 0 15px rgba(184, 115, 51, 0.2);
+    }
+
+    /* ===== ТЕЛЕФОН (по умолчанию) ===== */
+    .small-img {
+      width: 95%;
+      max-width: 500px;
+      display: block;
+      margin: 24px auto;
+      border-radius: 6px;
+      border: 1px solid #3a2e22;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.8);
+    }
+
+    /* ===== ПК и ноутбуки ===== */
+    @media (min-width: 900px) {
+      .small-img {
+        width: 65%; 
+        max-width: 600px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="bg-music" loop>
+    <source src="../audio/music.mp3" type="audio/mpeg">
+  </audio>
+  
+  <button id="back" onclick="window.location.href='../index.html'">⬅ К карте</button>
+
+  <div id="content">
+    <h1>⛏️ Крепость Гордон</h1>
+    <p class="subtitle">Цитадель мастеров</p>
+    
+    <!-- Загрузи арт в папку arts под именем gordon.jpg или поменяй путь ниже -->
+    <img src="../arts/gordon1.png" class="small-img" alt="Крепость Гордон">
+    <img src="../arts/gordon2.png" class="small-img" alt="Крепость Гордон">
+    <div class="info-box">
+      <p><b>Население:</b> Дварфы</p>
+      <p><b>Правитель:</b> Король Ульрих</p>
+      <p><b>Расположение:</b> Остров на континенте Лэстрэл</p>
+    </div>
+
+    <h2>Описание</h2>
+    <p>Крепость Гордон — это поистине красивое и прогрессивное место, вырубленное в скалах. Оно населено умелыми мастерами, чьи навыки охватывают всё: начиная с величественной архитектуры и заканчивая сложнейшими магическими рунными печатями. Дварфы Гордона — настоящие виртуозы в создании изощренных механизмов, которые приводят в движение лифты, двери и даже целые оборонительные системы.</p>
+<img src="../arts/gordon3.jpg" class="small-img" alt="Крепость Гордон">
+    <h2>Гордость клана</h2>
+    <div class="highlight-box">
+      <p>Но главное, чем дварфы очень гордятся — это изготовление фирменного алкоголя. Их рецепты передаются из поколения в поколение, а бочонки с янтарным напитком рассылаются по всему континенту, от заснеженных гор до жарких пустынь.</p>
+    </div>
+
+    <h2>История и Правитель</h2>
+    <p>Территориально, согласно историческим хроникам, во время Великой войны территорий дварфы обосновались на большом острове континента Лэстрэл, который был назван — «Гордон». С тех пор это место стало их неприступным домом.</p>
+    <p>Правит этими землями действующий король дварфов — <b>Ульрих</b>. Под его мудрым руководством Гордон процветает, а его подданные продолжают совершенствовать свое мастерство.</p>
+    <img src="../arts/gordon4.jpg" class="small-img" alt="Крепость Гордон">
+    <h2>Как добраться</h2>
+    <p>Добраться до Гордона в редких случаях возможно на кораблях, но морской путь опасен и долог. В основном дварфы придумали совершенно новый вид воздушного транспорта, который они назвали <b>дирижаблями</b>. Эти огромные, наполненные газом машины с медными винтами стали символом прогресса дварфийской инженерии и единственным надежным способом добраться до острова.</p>
+
+    <h2>Достопримечательности</h2>
+    <ul>
+      <li><b>Пивоварни Гордона:</b> сердце крепости, где варят знаменитый на весь мир эль.</li>
+      <li><b>Механический квартал:</b> район, где создаются дирижабли и рунные механизмы.</li>
+      <li><b>Главный зал короля Ульриха:</b> тронный зал, украшенный барельефами из меди и золота.</li>
+    </ul>
+  </div>
+
+  <script>
+    const tg = window.Telegram?.WebApp;
+    if (tg) { tg.ready(); tg.expand(); }
+  </script>
+  <script src="../music.js"></script>
+</body>
+</html>
