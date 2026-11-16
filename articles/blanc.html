@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Поселение Бланс</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    /* Стиль уютной деревни на опушке: дерево, мох и пшеница */
+    body {
+      background: #1c1814; 
+      background-image: linear-gradient(180deg, #1c1814 0%, #2b2316 100%);
+      color: #d4cdbf; 
+      font-family: -apple-system, sans-serif;
+      line-height: 1.7; padding-bottom: 40px;
+      min-height: 100vh;
+    }
+
+    #back {
+      position: fixed; left: 12px; top: 12px;
+      background: rgba(30, 25, 15, 0.85); 
+      border: 1px solid #d4af37; /* Золото пшеницы */
+      color: #d4af37; padding: 10px 16px;
+      border-radius: 20px; font-size: 14px;
+      cursor: pointer; z-index: 10;
+      transition: 0.3s;
+    }
+    #back:hover {
+      background: rgba(212, 175, 55, 0.2);
+      box-shadow: 0 0 12px #d4af37;
+    }
+
+    #content { padding: 20px; margin-top: 50px; max-width: 900px; margin-left: auto; margin-right: auto; }
+    
+    h1 { 
+      font-size: 28px; margin-bottom: 8px; 
+      color: #d4af37; 
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+      letter-spacing: 1px;
+    }
+    
+    .subtitle { 
+      color: #7a8c5f; /* Цвет мха */
+      margin-bottom: 20px; font-size: 14px; 
+      text-transform: uppercase; letter-spacing: 2px;
+      font-weight: bold;
+    }
+
+    h2 {
+      font-size: 18px; margin: 30px 0 12px;
+      color: #b89b4a; 
+      border-bottom: 1px solid #3a2d1a;
+      padding-bottom: 6px;
+    }
+
+    p { margin-bottom: 14px; color: #bfae92; text-align: justify; }
+    ul { margin: 0 0 14px 20px; color: #bfae92; }
+    li { margin-bottom: 8px; }
+    li::marker { color: #7a8c5f; }
+
+    .info-box {
+      background: rgba(40, 30, 15, 0.6); 
+      border-left: 4px solid #7a8c5f;
+      padding: 16px; margin: 24px 0; border-radius: 6px;
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+    }
+    .info-box p { margin-bottom: 8px; color: #e0d6c5; text-align: left; }
+    .info-box b { color: #d4af37; }
+
+    /* Блок-цитата про Каролину */
+    .quote-box {
+      background: rgba(212, 175, 55, 0.05);
+      border-left: 3px solid #d4af37;
+      padding: 15px;
+      margin: 20px 0;
+      font-style: italic;
+      color: #d6c4a5;
+      border-radius: 0 6px 6px 0;
+    }
+
+    /* ===== ТЕЛЕФОН (по умолчанию) ===== */
+    .small-img {
+      width: 95%;
+      max-width: 500px;
+      display: block;
+      margin: 24px auto;
+      border-radius: 8px;
+      border: 1px solid #3a2d1a;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.8);
+    }
+
+    /* ===== ПК и ноутбуки ===== */
+    @media (min-width: 900px) {
+      .small-img {
+        width: 60%; 
+        max-width: 600px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="bg-music" loop>
+    <source src="../audio/music.mp3" type="audio/mpeg">
+  </audio>
+  
+  <button id="back" onclick="window.location.href='../index.html'">⬅ К карте</button>
+
+  <div id="content">
+    <h1>🏡 Поселение Бланс</h1>
+    <p class="subtitle">Родина Каролины</p>
+    
+    <!-- Загрузи арт в папку arts под именем blanc.jpg или поменяй путь ниже -->
+    <img src="../arts/blanc1.jpg" class="small-img" alt="Поселение Бланс">
+    <img src="../arts/blanc2.jpg" class="small-img" alt="Поселение Бланс">
+    
+    <div class="info-box">
+      <p><b>Статус:</b> Сельское поселение</p>
+      <p><b>Мэр:</b> Льюис</p>
+      <p><b>Расположение:</b> На границе с лесом Крея</p>
+    </div>
+
+    <h2>Описание</h2>
+    <p>Бланс — это небольшое, тихое сельское поселение, затерянное на просторах королевства. Жизнь здесь течет размеренно, подчиняясь смене времен года и сбору урожая. Дома здесь строят из крепкого дерева, а по утрам пахнет свежим хлебом. Управляет поселением мэр Льюис — справедливый и рассудительный человек, которого здесь уважают.</p>
+
+    <h2>Школа и Дозор</h2>
+    <p>Несмотря на скромные размеры, в Блансе есть небольшая сельская школа, где местная детвора учится грамоте, счету и основам истории. </p>
+    <p>Но главная особенность Бланса — его соседство. Поселение стоит на самой опушке запретного леса Крея. Чтобы никто из жителей или путников не сбился с пути и не сгинул в гуще древнего леса, королевство Эрдуин выстроило здесь постоянный сторожевой дозор. Воины день и ночь патрулируют границу, охраняя покой деревни.</p>
+
+    <h2>Родина Каролины</h2>
+    <div class="quote-box">
+      «В первую очередь, Бланс известен не своим дозором, а тем, что это — родина Каролины».
+    </div>
+    <p>Именно здесь нашла свой дом и выросла Каролина. Она не помнит своих родных родителей. Девочку приютили и вырастили добрые старики, живущие на краю деревни — бабушка <b>Мирабель</b>, знающая толк в травах, и дедушка <b>Эдвин</b>, бывший егерь, который когда-то сам водил отряды к границам Крея. В их доме всегда пахнет сушеными яблоками и старыми книгами.</p>
+
+    <h2>Достопримечательности</h2>
+    <ul>
+      <li><b>Сельская школа:</b> маленькое, но гордое здание с единственным учителем на все предметы.</li>
+      <li><b>Дозорная башня:</b> вышка на границе с лесом, откуда ведется наблюдение за Креей.</li>
+      <li><b>Дом Мирабель и Эдвина:</b> уютная хижина с целебным садом, где выросла Каролина.</li>
+    </ul>
+  </div>
+
+  <script>
+    const tg = window.Telegram?.WebApp;
+    if (tg) { tg.ready(); tg.expand(); }
+  </script>
+  <script src="../music.js"></script>
+</body>
+</html>
