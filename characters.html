@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Персонажи</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background: #0d0d1a;
+      color: #eee;
+      font-family: -apple-system, sans-serif;
+      padding-bottom: 40px;
+      min-height: 100vh;
+    }
+
+    #back {
+      position: fixed; left: 12px; top: 12px;
+      background: rgba(0,0,0,0.7); border: 1px solid #ffd700;
+      color: #ffd700; padding: 10px 16px;
+      border-radius: 20px; font-size: 14px;
+      cursor: pointer; z-index: 10;
+      transition: 0.3s;
+      text-decoration: none;
+    }
+    #back:hover { background: rgba(255, 215, 0, 0.2); }
+
+    .header { text-align: center; padding: 70px 20px 30px; }
+    .header h1 { font-size: 32px; color: #ffd700; text-shadow: 0 0 10px rgba(255, 215, 0, 0.4); margin-bottom: 8px; }
+    .header p { color: #888; font-size: 15px; }
+
+    /* ===== СЕТКА ПЕРСОНАЖЕЙ ===== */
+    .characters-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); 
+      gap: 15px;
+      padding: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 900px) {
+      .characters-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        padding: 30px;
+      }
+    }
+
+    /* Карточка в галерее */
+    .char-card {
+      display: flex;
+      flex-direction: column;
+      background: #1e1e2e;
+      border: 1px solid #333;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+
+    .char-card:hover {
+      transform: translateY(-5px);
+      border-color: #ffd700;
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.15);
+    }
+
+    .char-card img {
+      width: 100%;
+      aspect-ratio: 3 / 4; 
+      object-fit: cover;
+      border-bottom: 1px solid #333;
+      background: #111;
+    }
+
+    .char-name {
+      padding: 12px 10px;
+      text-align: center;
+      color: #fff;
+      font-weight: bold;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+      background: #151520;
+    }
+    
+    .char-card:hover .char-name { color: #ffd700; }
+
+    /* ===== ВСПЛЫВАЮЩЕЕ ОКНО (МОДАЛЬНОЕ) ===== */
+    .modal-overlay {
+      display: none; /* Скрыто по умолчанию */
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85); /* Затемнение фона */
+      backdrop-filter: blur(4px); /* Размытие заднего фона */
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Класс, который включает окно */
+    .modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-content {
+      background: #1e1e2e;
+      border: 2px solid #ffd700;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+      overflow: hidden;
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: scale(1);
+    }
+
+    /* Кнопка закрытия */
+    .close-btn {
+      position: absolute;
+      top: 10px; right: 10px;
+      background: rgba(0,0,0,0.6);
+      border: none;
+      color: #fff;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      z-index: 10;
+      transition: 0.2s;
+    }
+    .close-btn:hover { background: #ffd700; color: #000; }
+
+    /* Картинка внутри окна */
+    .modal-img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-bottom: 2px solid #ffd700;
+    }
+
+    /* Текст внутри окна */
+    .modal-info {
+      padding: 20px;
+    }
+
+    .modal-info h2 {
+      color: #ffd700;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .modal-info .subtitle {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .modal-info p {
+      color: #ccc;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <a href="menu.html" id="back">⬅ В меню</a>
+
+  <div class="header">
+    <h1>👤 Персонажи</h1>
+    <p>Герои и злодеи континента Лэстрэл</p>
+  </div>
+
+  <div class="characters-grid">
+    
+    <!-- ПЕРСОНАЖ 1 -->
+    <!-- В data-атрибутах мы храним текст для карточки -->
+    <div class="char-card" 
+         data-name="Имя" 
+         data-subtitle="Титул" 
+         data-desc="Краткое описание." 
+         data-img="chararts/картинка.jpg">
+      <img src="arts/картинка.jpg" alt="Имя">
+      <div class="char-name">Имя</div>
+    </div>
+
+    <!-- ПЕРСОНАЖ 2 -->
+    <div class="char-card" 
+         data-name="Имя" 
+         data-subtitle="Титул" 
+         data-desc="Краткое описание." 
+         data-img="chararts/картинка.jpg">
+      <img src="arts/картинка.jpg" alt="Имя">
+      <div class="char-name">Имя</div>
+    </div>
+
+    <!-- ПЕРСОНАЖ 3 -->
+    <div class="char-card" 
+         data-name="Имя" 
+         data-subtitle="Титул" 
+         data-desc="Краткое описание." 
+         data-img="chararts/картинка.jpg">
+      <img src="arts/картинка.jpg" alt="Имя">
+      <div class="char-name">Имя</div>
+    </div>
+
+    <!-- ШАБЛОН ДЛЯ КОПИРОВАНИЯ НОВОГО ПЕРСОНАЖА -->
+    <!--
+    <div class="char-card" 
+         data-name="Имя" 
+         data-subtitle="Титул" 
+         data-desc="Краткое описание." 
+         data-img="arts/картинка.jpg">
+      <img src="arts/картинка.jpg" alt="Имя">
+      <div class="char-name">Имя</div>
+    </div>
+    -->
+
+  </div>
+
+  <!-- ===== САМО ВСПЛЫВАЮЩЕЕ ОКНО ===== -->
+  <div class="modal-overlay" id="charModal">
+    <div class="modal-content">
+      <button class="close-btn" id="closeModal">✕</button>
+      <img src="" id="modalImg" class="modal-img" alt="Персонаж">
+      <div class="modal-info">
+        <h2 id="modalName">Имя</h2>
+        <div class="subtitle" id="modalSubtitle">Титул</div>
+        <p id="modalDesc">Описание...</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tg = window.Telegram?.WebApp;
+    if (tg) { tg.ready(); tg.expand(); }
+
+    // Получаем элементы окна
+    const modal = document.getElementById('charModal');
+    const closeBtn = document.getElementById('closeModal');
+    
+    // Получаем элементы внутри окна, куда будем вставлять текст
+    const modalImg = document.getElementById('modalImg');
+    const modalName = document.getElementById('modalName');
+    const modalSubtitle = document.getElementById('modalSubtitle');
+    const modalDesc = document.getElementById('modalDesc');
+
+    // Находим все карточки персонажей
+    const cards = document.querySelectorAll('.char-card');
+
+    // Добавляем клик на каждую карточку
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        // Берем данные из data-атрибутов карточки
+        const name = card.getAttribute('data-name');
+        const subtitle = card.getAttribute('data-subtitle');
+        const desc = card.getAttribute('data-desc');
+        const img = card.getAttribute('data-img');
+
+        // Вставляем эти данные в окно
+        modalName.textContent = name;
+        modalSubtitle.textContent = subtitle;
+        modalDesc.textContent = desc;
+        modalImg.src = img;
+
+        // Показываем окно (добавляем класс active)
+        modal.classList.add('active');
+      });
+    });
+
+    // Функция закрытия окна
+    function closeModal() {
+      modal.classList.remove('active');
+    }
+
+    // Закрытие по крестику
+    closeBtn.addEventListener('click', closeModal);
+
+    // Закрытие по клику на затемненный фон (вне карточки)
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
