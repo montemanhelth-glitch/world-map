@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Крепость Нуграм</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    /* Стиль ледяной крепости: холодный камень и снег */
+    body {
+      background: #0a111a; 
+      background-image: linear-gradient(180deg, #0a111a 0%, #142130 100%);
+      color: #b8c5d4; 
+      font-family: -apple-system, sans-serif;
+      line-height: 1.7; padding-bottom: 40px;
+      min-height: 100vh;
+    }
+
+    #back {
+      position: fixed; left: 12px; top: 12px;
+      background: rgba(10, 20, 30, 0.85); 
+      border: 1px solid #4fa8d1; /* Цвет льда */
+      color: #7ad0f5; padding: 10px 16px;
+      border-radius: 20px; font-size: 14px;
+      cursor: pointer; z-index: 10;
+      transition: 0.3s;
+    }
+    #back:hover {
+      background: rgba(79, 168, 209, 0.2);
+      box-shadow: 0 0 12px #4fa8d1;
+    }
+
+    #content { padding: 20px; margin-top: 50px; max-width: 900px; margin-left: auto; margin-right: auto; }
+    
+    h1 { 
+      font-size: 28px; margin-bottom: 8px; 
+      color: #e0e8f0; 
+      text-shadow: 0 0 10px rgba(224, 232, 240, 0.4);
+      letter-spacing: 1px;
+    }
+    
+    .subtitle { 
+      color: #5c7a92; /* Цвет сумерек над горами */
+      margin-bottom: 20px; font-size: 14px; 
+      text-transform: uppercase; letter-spacing: 2px;
+      font-weight: bold;
+    }
+
+    h2 {
+      font-size: 18px; margin: 30px 0 12px;
+      color: #7ad0f5; 
+      border-bottom: 1px solid #1e3245;
+      padding-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    p { margin-bottom: 14px; color: #9baab8; text-align: justify; }
+    ul { margin: 0 0 14px 20px; color: #9baab8; }
+    li { margin-bottom: 8px; }
+    li::marker { color: #7ad0f5; }
+
+    /* Блок с инфой: стиль каменной плиты */
+    .info-box {
+      background: rgba(20, 35, 50, 0.7); 
+      border-left: 4px solid #7ad0f5;
+      padding: 16px; margin: 24px 0; border-radius: 4px;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.6), 0 4px 10px rgba(0,0,0,0.5);
+    }
+    .info-box p { margin-bottom: 8px; color: #d0dce8; text-align: left; }
+    .info-box b { color: #7ad0f5; }
+
+    /* Блок про Налу */
+    .leader-box {
+      background: rgba(40, 60, 80, 0.4);
+      border: 1px solid #2c4a63;
+      border-radius: 6px;
+      padding: 15px;
+      margin: 20px 0;
+      color: #cbd9e6;
+      box-shadow: 0 0 15px rgba(44, 74, 99, 0.5);
+    }
+
+    /* ===== ТЕЛЕФОН (по умолчанию) ===== */
+    .small-img {
+      width: 95%;
+      max-width: 500px;
+      display: block;
+      margin: 24px auto;
+      border-radius: 6px;
+      border: 1px solid #1e3245;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.8);
+    }
+
+    /* ===== ПК и ноутбуки ===== */
+    @media (min-width: 900px) {
+      .small-img {
+        width: 65%; 
+        max-width: 600px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="bg-music" loop>
+    <source src="../audio/music.mp3" type="audio/mpeg">
+  </audio>
+  
+  <button id="back" onclick="window.location.href='../index.html'">⬅ К карте</button>
+
+  <div id="content">
+    <h1>🏔️ Крепость Нуграм</h1>
+    <p class="subtitle">Цитадель горных голиафов</p>
+    
+    <!-- Загрузи арт в папку arts под именем nugram.jpg или поменяй путь ниже -->
+    <img src="../arts/nugram1.jpg" class="small-img" alt="Крепость Нуграм">
+    
+    <div class="info-box">
+      <p><b>Население:</b> Голиафы</p>
+      <p><b>Правитель:</b> Нала (Каменная Скала)</p>
+      <p><b>Статус:</b> Неприступная крепость</p>
+    </div>
+
+    <h2>Описание</h2>
+    <p>Нуграм — это большая, поистине непробиваемая крепость, затерянная среди ледяных пиков. Она населена крепкими и выносливыми существами — голиафами. За всю историю еще никому не удавалось покорить это место. Суровый климат, отвесные скалы и непробиваемые стены делают Нуграм неприступным бастионом, который сама природа защищает от врагов.</p>
+
+    <h2>Нравы голиафов</h2>
+    <p>Голиафы — гордый и независимый народ. Они предпочитают не вмешиваться в дела других королевств, живя по своим древним законам и традициям. Однако, если дело доходит до сражения, им нет равных. В бою голиафы полагаются на свою невероятную силу и выносливость, а их тактика основана на знании каждой тропы и каждого выступа в родных горах.</p>
+    <img src="../arts/nugram2.jpg" class="small-img" alt="Крепость Нуграм">
+    <h2>Правительница Нала</h2>
+    <div class="leader-box">
+      <p>Этими землями правит голиафиха <b>Нала</b>, прозванная «Каменной Скалой». Говорят, её характер столь же тверд, как и стены Нуграма, а решения она принимает с холодной и непоколебимой рассудительностью.</p>
+    </div>
+     
+    <h2>Опасности перевала</h2>
+    <p>Климат здесь очень холодный, но даже это не является главной опасностью для тех, кто осмелится подойти к стенам. Весь ледяной горный перевал населен <b>снежными волками</b>, <b>белыми медведями</b> и <b>медвесычами</b>. Они — истинные хозяева этих земель, и их голод может быть страшнее любого мороза.</p>
+    <p>Но самая страшная угроза таится в глубине снежных гор. Там, в ледяных пещерах, скрывается <b>ледяной дракон</b> и его потомство. Их присутствие делает любой поход к Нуграму смертельно опасным предприятием.</p>
+<img src="../arts/nugram3.jpg" class="small-img" alt="Крепость Нуграм">
+<img src="../arts/nugram4.jpg" class="small-img" alt="Крепость Нуграм">
+    <h2>Ключевые угрозы</h2>
+    <ul>
+      <li><b>Снежные волки:</b> стайные хищники, атакующие из засады.</li>
+      <li><b>Белые медведи и медвесычи:</b> могучие звери, не знающие страха.</li>
+      <li><b>Ледяной дракон:</b> древний хозяин глубин, чье дыхание обращает в лед.</li>
+    </ul>
+  </div>
+
+  <script>
+    const tg = window.Telegram?.WebApp;
+    if (tg) { tg.ready(); tg.expand(); }
+  </script>
+  <script src="../music.js"></script>
+</body>
+</html>
