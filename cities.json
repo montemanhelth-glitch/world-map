@@ -51,8 +51,6 @@
   "Крепость голиафов Нутрам": {
     "x": 35,
     "y": 16,
-    "x": 78,
-    "y": 25,
     "icon": "icons/fortress goiaph.png",
     "article": "index.html",
     "label": "Крепость голиафов<br>Нутрам"
