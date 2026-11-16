@@ -48,18 +48,18 @@
     "article": "index.html",
     "label": "Портовый город<br>Цэнси"
 },
-  "Крепость голиафов Нутрам": {
+  "Крепость голиафов Нуграм": {
     "x": 35,
     "y": 16,
     "icon": "icons/fortress goiaph.png",
-    "article": "index.html",
-    "label": "Крепость голиафов<br>Нутрам"
+    "article": "articles/nugram.html",
+    "label": "Крепость голиафов<br>Нуграм"
 },
   "Крепость дварфов Гордон": {
     "x": 78,
     "y": 25,
     "icon": "icons/fortress.png",
-    "article": "index.html",
+    "article": "articles/gordon.html",
     "label": "Крепость дварфов<br>Гордон"
 },
   "Бесплодные земли": {
