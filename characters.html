@@ -93,7 +93,6 @@
       position: relative;
     }
 
-    /* Разные цвета свечения при наведении для каждой карточки */
     .char-card:nth-child(1):hover { border-color: #38bdf8; box-shadow: 0 0 30px rgba(56, 189, 248, 0.4); transform: translateY(-8px) scale(1.02); }
     .char-card:nth-child(2):hover { border-color: #a855f7; box-shadow: 0 0 30px rgba(168, 85, 247, 0.4); transform: translateY(-8px) scale(1.02); }
     .char-card:nth-child(3):hover { border-color: #f43f5e; box-shadow: 0 0 30px rgba(244, 63, 94, 0.4); transform: translateY(-8px) scale(1.02); }
@@ -169,7 +168,6 @@
       transform: translateY(0) scale(1);
     }
 
-    /* Кнопка закрытия */
     .close-btn {
       position: absolute;
       top: 15px; right: 15px;
@@ -194,7 +192,6 @@
       box-shadow: 0 0 15px #a855f7;
     }
 
-    /* Картинка внутри окна */
     .modal-img {
       width: 100%;
       height: 350px;
@@ -203,7 +200,6 @@
       border-bottom: 2px solid #a855f7;
     }
 
-    /* Текст внутри окна */
     .modal-info {
       padding: 25px;
       overflow-y: auto;
@@ -222,7 +218,7 @@
     }
 
     .modal-info .subtitle {
-      color: #f43f5e; /* Розово-красный акцент */
+      color: #f43f5e;
       font-size: 13px;
       margin-bottom: 15px;
       text-transform: uppercase;
@@ -239,6 +235,11 @@
   </style>
 </head>
 <body>
+
+  <!-- === АУДИО ПЛЕЕР === -->
+  <audio id="bg-music" loop>
+    <source src="audio/music.mp3" type="audio/mpeg">
+  </audio>
 
   <a href="menu.html" id="back">⬅ В меню</a>
 
@@ -341,5 +342,8 @@
       }
     });
   </script>
+  
+  <!-- ПОДКЛЮЧАЕМ ГЛОБАЛЬНЫЙ СКРИПТ МУЗЫКИ -->
+  <script src="music.js"></script>
 </body>
 </html>
