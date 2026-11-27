@@ -158,6 +158,62 @@
         max-width: 600px;
       }
     }
+
+    /* ===== СТИЛИ ДЛЯ ПОЛНОЭКРАННОЙ КАРТИНКИ ===== */
+    .zoomable {
+      cursor: zoom-in; 
+      transition: 0.3s;
+    }
+    .zoomable:hover {
+      filter: brightness(1.1);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+    }
+
+    .img-modal {
+      display: none; 
+      position: fixed;
+      z-index: 9999; 
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9); 
+      backdrop-filter: blur(5px);
+      justify-content: center;
+      align-items: center;
+      cursor: zoom-out; 
+    }
+
+    .img-modal.active {
+      display: flex;
+    }
+
+    #modalImage {
+      max-width: 95vw;
+      max-height: 95vh;
+      object-fit: contain; 
+      border: 2px solid #d4af37;
+      border-radius: 8px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.8);
+      animation: zoomIn 0.3s ease; 
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 20px; right: 20px;
+      color: #d4af37;
+      font-size: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      background: rgba(0,0,0,0.5);
+      border-radius: 50%;
+      width: 40px; height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
   </style>
 </head>
 <body>
@@ -202,7 +258,8 @@
       </div>
     </details>
 
-    <img src="../arts/blanc map.png" class="small-img" alt="Карта поселения Бланс">
+    <!-- КАРТА С ВОЗМОЖНОСТЬЮ УВЕЛИЧЕНИЯ -->
+    <img src="../arts/blanc map.png" class="small-img zoomable" alt="Карта поселения Бланс" onclick="openModal(this.src)">
     
     <h2>Достопримечательности</h2>
     <ul>
@@ -247,9 +304,28 @@
     <p><b>Описание:</b> небольшая каменно-деревянная хижина с дёрновой крышей. Двор завален инструментами и тележками. Внутри — стол с картами шахт, полки с камнями и книгами по горному делу. Гаррик — старый рудокоп, знает все тропы к шахтам, но недоверчив к незнакомцам.</p>
   </div>
 
+  <!-- Окно для полноэкранной карты (скрыто по умолчанию) -->
+  <div id="imgModal" class="img-modal" onclick="closeModal()">
+    <span class="close-modal">✕</span>
+    <img id="modalImage" src="" alt="Увеличенная карта">
+  </div>
+
   <script>
     const tg = window.Telegram?.WebApp;
     if (tg) { tg.ready(); tg.expand(); }
+
+    // Функции для работы полноэкранной карты
+    function openModal(imageSrc) {
+      const modal = document.getElementById('imgModal');
+      const modalImg = document.getElementById('modalImage');
+      modalImg.src = imageSrc;
+      modal.classList.add('active');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('imgModal');
+      modal.classList.remove('active');
+    }
   </script>
   <script src="../music.js"></script>
 </body>
