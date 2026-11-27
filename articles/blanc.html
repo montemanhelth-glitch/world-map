@@ -21,7 +21,7 @@
     #back {
       position: fixed; left: 12px; top: 12px;
       background: rgba(30, 25, 15, 0.85); 
-      border: 1px solid #d4af37; /* Золото пшеницы */
+      border: 1px solid #d4af37;
       color: #d4af37; padding: 10px 16px;
       border-radius: 20px; font-size: 14px;
       cursor: pointer; z-index: 10;
@@ -42,7 +42,7 @@
     }
     
     .subtitle { 
-      color: #7a8c5f; /* Цвет мха */
+      color: #7a8c5f;
       margin-bottom: 20px; font-size: 14px; 
       text-transform: uppercase; letter-spacing: 2px;
       font-weight: bold;
@@ -74,7 +74,6 @@
     .info-box p { margin-bottom: 8px; color: #e0d6c5; text-align: left; }
     .info-box b { color: #d4af37; }
 
-    /* Блок-цитата про Каролину */
     .quote-box {
       background: rgba(212, 175, 55, 0.05);
       border-left: 3px solid #d4af37;
@@ -190,7 +189,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      touch-action: none; /* Отключаем стандартный зум браузера */
+      touch-action: none;
     }
 
     #modalImage {
@@ -199,7 +198,7 @@
       object-fit: contain; 
       transform-origin: center center;
       transition: transform 0.1s ease-out;
-      pointer-events: none; /* Клики идут в контейнер */
+      pointer-events: none;
     }
 
     .close-modal {
@@ -260,7 +259,6 @@
     </div>
     <p>Именно здесь нашла свой дом и выросла Каролина. Она не помнит своих родных родителей. Девочку приютили и вырастили добрые старики, живущие на краю деревни — бабушка <b>Мирабель</b>, знающая толк в травах, и дедушка <b>Эдвин</b>, бывший егерь, который когда-то сам водил отряды к границам Крея. В их доме всегда пахнет сушеными яблоками и старыми книгами.</p>
     
-    <!-- СПОЙЛЕР С ИСТОРИЕЙ ПРО ВОЛШЕБНИКОВ -->
     <details class="spoiler-box">
       <summary>🔍 Узнать тайну семьи Каролины</summary>
       <div class="spoiler-content">
@@ -314,7 +312,7 @@
     <p><b>Описание:</b> небольшая каменно-деревянная хижина с дёрновой крышей. Двор завален инструментами и тележками. Внутри — стол с картами шахт, полки с камнями и книгами по горному делу. Гаррик — старый рудокоп, знает все тропы к шахтам, но недоверчив к незнакомцам.</p>
   </div>
 
-  <!-- Окно для полноэкранной карты (скрыто по умолчанию) -->
+  <!-- Окно для полноэкранной карты -->
   <div id="imgModal" class="img-modal">
     <span class="close-modal" onclick="closeModal()">✕</span>
     <div id="imgContainer" class="img-container">
@@ -354,6 +352,11 @@
     }
 
     function updateTransform() {
+      // МАГИЯ: Если масштаб вернулся к 1 (или меньше), центрируем картинку
+      if (currentScale <= 1.01) {
+        posX = 0;
+        posY = 0;
+      }
       modalImg.style.transform = `translate(${posX}px, ${posY}px) scale(${currentScale})`;
     }
 
@@ -372,14 +375,15 @@
     }, { passive: false });
 
     container.addEventListener('touchmove', (e) => {
-      e.preventDefault(); // Блокируем скролл страницы
+      e.preventDefault();
       if (e.touches.length === 2) {
         const dist = Math.hypot(
           e.touches[0].pageX - e.touches[1].pageX,
           e.touches[0].pageY - e.touches[1].pageY
         );
         const scale = (dist / startDistance) * startScale;
-        currentScale = Math.min(Math.max(1, scale), 5); // Ограничение от 1x до 5x
+        // Ограничиваем масштаб от 1 до 5
+        currentScale = Math.min(Math.max(1, scale), 5); 
         updateTransform();
       } else if (e.touches.length === 1 && currentScale > 1) {
         posX = e.touches[0].pageX - startX;
